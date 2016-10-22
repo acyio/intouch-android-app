@@ -1,6 +1,6 @@
 package com.example.ee461l_project;
 
-public class BusinessContact extends Contact implements Observer{
+public class BusinessContact extends Contact {
 	private String category; //business or personal
 	private String name;
 	private String phoneNumber;

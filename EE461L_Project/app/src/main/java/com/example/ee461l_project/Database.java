@@ -1,11 +1,12 @@
-import java.util.*;
 package com.example.ee461l_project;
+
+import java.util.ArrayList;
 
 public class Database {
 	private ArrayList<Contact> allContacts;
 
 	public Database(){
-		allContacts = new ArrayList<Contact>;
+		allContacts = new ArrayList<Contact>();
 	}
 
 
@@ -18,13 +19,13 @@ public class Database {
 	}
 
 	public boolean addContact(Contact c){
-		if (isInDatabase) return false;
+		if (isInDatabase(c)) return false;
 		allContacts.add(c);
 		return true;
 	}
 
 	public boolean deleteContact(Contact c){
-		if (!isInDatabase) return false;
+		if (!isInDatabase(c)) return false;
 		int i = 0;
 		while (!c.getName().equals(allContacts.get(i).getName()))
 			i++;
@@ -35,14 +36,26 @@ public class Database {
 	public boolean push(){
 		//automatically update each contact in each node's list upon change
 		//this is the notifyObservers method
-		for(Contact c : allContacts) {
-			c.update();
-			notify();
+		try {
+			for(Contact c : allContacts) {
+				c.update();
+				notify();
+			}
+			return true;
+		}
+		catch (Exception e) {
+			return false; //Something went wrong
 		}
 	}
 
 	public boolean pull(){
 		//poll each node for updated info; update master list
+		try {
+			return true;
+		}
+		catch (Exception e) {
+			return false; //Something went wrong
+		}
 	}
 
 }

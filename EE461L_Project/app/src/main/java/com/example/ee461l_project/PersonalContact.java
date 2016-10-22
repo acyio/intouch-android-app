@@ -1,6 +1,6 @@
-package com.example.ee461l_project.EE461L_Project;
+package com.example.ee461l_project;
 
-public class PersonalContact extends Contact implements Observer{
+public class PersonalContact extends Contact{
 	private String category; //business or personal
 	private String name;
 	private String phoneNumber;
@@ -16,7 +16,7 @@ public class PersonalContact extends Contact implements Observer{
 	}
 
 	public String getCategory() {return category;}
-	public String getName() {return name};
+	public String getName() {return name;}
 	public String getPhoneNumber() {return phoneNumber;}
 	public String getEmail() {return email;}
 

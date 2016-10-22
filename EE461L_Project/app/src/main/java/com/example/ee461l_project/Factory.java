@@ -1,14 +1,17 @@
-import java.util.*;
-package com.example.ee461l_project.EE461L_Project;
+package com.example.ee461l_project;
 
 //since contact is abstract, only instantiates while returning, since contact cannot be instantiated
-public class ContactFactory {
+public class Factory {
 	public Contact createContact(String contactType) {
+		Contact contact = null; //A variable to hold the contact instantiated here
 		if(contactType.equals("PersonalContact")) {
-			return new PersonalContact();
+			contact = new PersonalContact();
+			return contact;
 		}
 		else if (contactType.equals("BusinessContact")) {
-			return new BusinessContact();
+			contact = new BusinessContact();
+			return contact;
 		}
+		return contact;
 	}
 }
