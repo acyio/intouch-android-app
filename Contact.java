@@ -1,3 +1,5 @@
+package com.example.ee461l_project;
+
 public abstract class Contact {
 	private String category; //business or personal
 	private String name;
@@ -6,7 +8,7 @@ public abstract class Contact {
 	//private String linkedInURL; //in business contacts only
 	private boolean changed;
 
-	public abstract Contact(); //factory method is the constructor
+	//public abstract Contact(); //factory method is the constructor
 
 	public String getCategory() {return category;}
 	public String getName() {return name};

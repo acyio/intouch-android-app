@@ -1,3 +1,5 @@
+package com.example.ee461l_project;
+
 public class BusinessContact extends Contact implements Observer{
 	private String category; //business or personal
 	private String name;
