@@ -1,5 +1,5 @@
 import java.util.*;
-
+package com.example.ee461l_project.EE461L_Project;
 
 //since contact is abstract, only instantiates while returning, since contact cannot be instantiated
 public class ContactFactory {

@@ -1,3 +1,5 @@
+package com.example.ee461l_project.EE461L_Project;
+
 public class BusinessContact extends Contact implements Observer{
 	private String category; //business or personal
 	private String name;
@@ -6,7 +8,8 @@ public class BusinessContact extends Contact implements Observer{
 	private String linkedInURL; //in business contacts only
 	private boolean changed;
 
-	public Contact() { //factory method is the constructor
+	public BusinessContact() { //factory method is the constructor
+		super();
 	}
 
 	@Override
@@ -15,10 +18,10 @@ public class BusinessContact extends Contact implements Observer{
 	}
 
 	public String getCategory() {return category;}
-	public String getName() {return name};
+	public String getName() {return name;}
 	public String getPhoneNumber() {return phoneNumber;}
 	public String getEmail() {return email;}
-	public String getLinkedInURL() {return linkedInURL; //in business contact only}
+	public String getLinkedInURL() {return linkedInURL;} //in business contact only}
 
 	public void setCategory(String newCat) { //will need to create new object if the object is now a business contact
 		category = newCat;
