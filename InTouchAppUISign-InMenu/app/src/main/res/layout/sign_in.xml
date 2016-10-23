@@ -33,7 +33,7 @@
                 android:inputType="textPersonName"
                 android:ems="10"
                 android:id="@+id/editText9"
-                android:hint="User Name"
+                android:hint="Username"
                 android:textColorLink="@android:color/holo_blue_dark" />
 
             <EditText

@@ -106,7 +106,7 @@
                     android:inputType="date"
                     android:ems="10"
                     android:id="@+id/editText7"
-                    android:hint="Date of Birth"
+                    android:hint="Birthdate"
                     android:textColorLink="@android:color/holo_blue_dark" />
 
                 <EditText
@@ -116,7 +116,7 @@
                     android:ems="10"
                     android:id="@+id/editText8"
                     android:layout_weight="1"
-                    android:hint="User Name"
+                    android:hint="Username"
                     android:textColorLink="@android:color/holo_blue_dark" />
             </LinearLayout>
 
