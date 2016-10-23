@@ -8,11 +8,6 @@ public class BusinessContact extends Contact {
       this.linkedInURL = url;
    }
 
-	@Override
-	public void update() {
-		this.changed = false;
-	}
-
 	public String getCategory() {return category;}
 	public String getName() {return name;}
 	public String getPhoneNumber() {return phoneNumber;}
