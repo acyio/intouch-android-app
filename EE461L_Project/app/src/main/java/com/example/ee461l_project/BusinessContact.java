@@ -9,6 +9,7 @@ public class BusinessContact extends Contact {
 	private boolean changed;
 
 	public BusinessContact() { //factory method is the constructor
+
 	}
 
 	@Override
