@@ -72,6 +72,8 @@ public class MainActivity extends AppCompatActivity {
  String pa = pass.getText().toString();
  String b = birth.getText().toString();
  String u = user.getText().toString();
+ i = new Intent(this, UploadSearchActivity.class);
+ startActivity(i);
  }
  */
 }
