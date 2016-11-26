@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">EE461L_Project</string>
+    <string name="search_hint">names, emails, phone #s</string>
+    <string name="upload_button">Upload Your Information</string>
+    <string name="view_contact_button">View Your Contacts</string>
+    <string name="search_menu">Search</string>
+    <string name="name_button">Update Your Name</string>
+    <string name="phone_button">Update Your Phone Number</string>
+    <string name="email_button">Update Your Email Address</string>
+</resources>
