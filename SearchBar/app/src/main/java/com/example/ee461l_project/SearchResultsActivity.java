@@ -6,6 +6,8 @@ import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.ContextMenu;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -20,6 +22,7 @@ import static android.R.id.list;
 public class SearchResultsActivity extends AppCompatActivity {
     Database currentDatabase = new Database();
     ArrayList<Contact> foundContacts = new ArrayList<Contact>();
+    ListView resultView;
 
     private void databaseFill() {
         PersonalContact Alice = new PersonalContact();
@@ -44,34 +47,20 @@ public class SearchResultsActivity extends AppCompatActivity {
         currentDatabase.addContact(Dan);
     }
 
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_results);
-        databaseFill();
-        /*
-        // Get the intent, verify the action and get the query
-        Intent intent = getIntent();
-        databaseFill();
-        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
-            String query = intent.getStringExtra(SearchManager.QUERY);
-            foundContacts = currentDatabase.searchContacts(query);
-            ArrayList<String> foundNames = new ArrayList<String>();
-            for(Contact c : foundContacts) {
-                foundNames.add(c.getName());
-            }
-            ArrayAdapter<String> searchAdapter =
-                    new ArrayAdapter<String>(this, R.layout.search_results, foundNames);
-            ListView contactList = (ListView) findViewById(R.id.searchList);
-            contactList.setAdapter(searchAdapter);
 
-        }
-        */
+        resultView = (ListView)findViewById(R.id.searchList);
+        registerForContextMenu(resultView);
+
+        databaseFill();
         Intent intent = getIntent();
         String query = intent.getStringExtra(UploadSearchActivity.EXTRA_MESSAGE);
-        //String query = "Dan";
 
-        //String[] dummyList = {"Alice", "Bob", "Callie", "Dan"};
         foundContacts = currentDatabase.searchContacts(query);
         ArrayList<String> contactNames = new ArrayList<String>();
         for(Contact c : foundContacts) {
@@ -80,21 +69,20 @@ public class SearchResultsActivity extends AppCompatActivity {
         if(contactNames.isEmpty()) {
             contactNames.add("Sorry, we couldn't find anyone with that information");
         }
+
         ArrayAdapter<String> searchAdapter =
-                //new ArrayAdapter<String>(this, R.layout.activity_search_results, dummyList);
                 new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, contactNames);
-        ListView contactList = (ListView) findViewById(R.id.searchList);
-        contactList.setAdapter(searchAdapter);
-        /*
-        ArrayAdapter<String> myAdapter=new
-                ArrayAdapter<String>(
-                this,
-                android.R.layout.simple_list_item_1,
-                query);
-        ListView myList=(ListView)
-                findViewById(R.id.listView);
-        myList.setAdapter(myAdapter);
-        */
+        resultView.setAdapter(searchAdapter);
+
+
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu,
+                                    View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        getMenuInflater().inflate(R.menu.context_menu, menu);
+
 
     }
 }

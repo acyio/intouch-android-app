@@ -7,4 +7,7 @@
     <string name="name_button">Update Your Name</string>
     <string name="phone_button">Update Your Phone Number</string>
     <string name="email_button">Update Your Email Address</string>
+    <string name="view_contact">View this contact\'s info</string>
+    <string name="add_contact">Add this contact</string>
+
 </resources>
