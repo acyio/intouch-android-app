@@ -1,8 +1,10 @@
 package com.example.ee461l_project;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Pair;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -51,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         username = (EditText) findViewById(R.id.editText9);
         phone = (EditText) findViewById(R.id.editText10);
         password = (EditText) findViewById(R.id.editText11);
+        new EndpointsAsyncTask().execute(new Pair<Context, String>(this, "Manfred"));
     }
 
     // sign_in

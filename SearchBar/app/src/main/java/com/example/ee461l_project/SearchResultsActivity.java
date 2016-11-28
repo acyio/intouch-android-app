@@ -26,7 +26,7 @@ public class SearchResultsActivity extends AppCompatActivity {
     ArrayList<Contact> foundContacts = new ArrayList<Contact>();
     ListView resultView;
 
-    private void databaseFill() {
+    /*private void databaseFill() {
         PersonalContact Alice = new PersonalContact();
         Alice.setName("Alice");
         Alice.setEmail("Alice@gmail.com");
@@ -47,7 +47,7 @@ public class SearchResultsActivity extends AppCompatActivity {
         currentDatabase.addContact(Bob);
         currentDatabase.addContact(Callie);
         currentDatabase.addContact(Dan);
-    }
+    }*/
 
 
 
@@ -59,7 +59,7 @@ public class SearchResultsActivity extends AppCompatActivity {
         resultView = (ListView)findViewById(R.id.searchList);
         registerForContextMenu(resultView);
 
-        databaseFill();
+        //databaseFill();
         Intent intent = getIntent();
         String query = intent.getStringExtra(UploadSearchActivity.EXTRA_MESSAGE);
 

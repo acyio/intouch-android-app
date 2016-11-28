@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.ee461l_project">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -26,7 +28,7 @@
         </activity>
         <activity android:name=".SearchResultsActivity" />
         <activity android:name=".UploadInformationActivity" />
-        <activity android:name=".ProfileViewActivity"></activity>
+        <activity android:name=".ProfileViewActivity" />
     </application>
 
 </manifest>
