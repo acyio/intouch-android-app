@@ -23,13 +23,13 @@ public abstract class Contact implements Observer {
 	//public void setLinkedInURL(String newURL) {linkedInURL = newURL; //in business contact only}
 
 	public boolean contactMatch(String query) {
-		if(query.equals(this.getName())) {
+		if(this.getName().toLowerCase().contains(query.toLowerCase())) {
 			return true;
 		}
-		else if(query.equals(this.getPhoneNumber())) {
+		else if(this.getPhoneNumber().toLowerCase().contains(query.toLowerCase())) {
 			return true;
 		}
-		else if (query.equals(this.getEmail())) {
+		else if (this.getEmail().toLowerCase().contains(query.toLowerCase())) {
 			return true;
 		}
 		else {
@@ -37,4 +37,5 @@ public abstract class Contact implements Observer {
 		}
 
 	}
+
 }
