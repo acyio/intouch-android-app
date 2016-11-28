@@ -40,4 +40,23 @@ public abstract class Contact implements Observer {
 	public void update() {
 	   this.changed = false;
 	}
+
+	public boolean contactMatch(String query) {
+		String significantEmail = this.getEmail(); //will cut off any part of email after and including the @ symbol
+		int index = significantEmail.indexOf('@');
+		significantEmail = significantEmail.substring(0, index);
+		if(this.getName().toLowerCase().contains(query.toLowerCase())) {
+			return true;
+		}
+		else if(this.getPhoneNumber().toLowerCase().contains(query.toLowerCase())) {
+			return true;
+		}
+		else if (significantEmail.toLowerCase().contains(query.toLowerCase())) {
+			return true;
+		}
+		else {
+			return false;
+		}
+
+	}
 }

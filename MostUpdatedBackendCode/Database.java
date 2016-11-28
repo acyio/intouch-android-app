@@ -113,4 +113,14 @@ public class Database {
 	   return result;
 	}
 
+	public ArrayList<Contact> searchContacts(String query) {
+		ArrayList<Contact> foundContacts = new ArrayList<Contact>();
+		for(Contact c : allContacts) {
+			if(c.contactMatch(query)) {
+				foundContacts.add(c);
+			}
+		}
+		return foundContacts;
+	}
+
 }
