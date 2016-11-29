@@ -14,54 +14,52 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 public class UploadSearchActivity extends AppCompatActivity {
+	public final static String EXTRA_MESSAGE = "";
 
-    public final static String EXTRA_MESSAGE = "";
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_upload_search);
+		handleIntent(getIntent());
+	}
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_upload_search);
-        handleIntent(getIntent());
-    }
+	public void uploadContact(View view) {
+		Intent intent = new Intent(this, UploadInformationActivity.class);
+		startActivity(intent);
+	}
 
-    public void uploadContact(View view) {
-        Intent intent = new Intent(this, UploadInformationActivity.class);
-        startActivity(intent);
-    }
+	/*
+	 * public void viewContacts(View view) { Intent intent = new Intent(this,
+	 * ViewContactActivity.class); startActivity(intent); }
+	 */
 
-    /*public void viewContacts(View view) {
-        Intent intent = new Intent(this, ViewContactActivity.class);
-        startActivity(intent);
-    }*/
+	@Override
+	protected void onNewIntent(Intent intent) {
+		setIntent(intent);
+		handleIntent(intent);
+	}
 
+	private void handleIntent(Intent intent) {
+		if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+			String query = intent.getStringExtra(SearchManager.QUERY);
+			searchData(query);
+		}
+	}
 
-    @Override
-    protected void onNewIntent(Intent intent) {
-        setIntent(intent);
-        handleIntent(intent);
-    }
+	private void searchData(String query) {
+		Intent intent = new Intent(this, SearchResultsActivity.class);
+		intent.putExtra(EXTRA_MESSAGE, query);
+		startActivity(intent);
+	}
 
-    private void handleIntent(Intent intent) {
-        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
-            String query = intent.getStringExtra(SearchManager.QUERY);
-            searchData(query);
-        }
-    }
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.search_menu, menu);
 
-    private void searchData(String query) {
-        Intent intent = new Intent(this, SearchResultsActivity.class);
-        intent.putExtra(EXTRA_MESSAGE, query);
-        startActivity(intent);
-    }
+		SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+		SearchView searchView = (SearchView) menu.findItem(R.id.search).getActionView();
+		searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.search_menu, menu);
-
-        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        SearchView searchView = (SearchView) menu.findItem(R.id.search).getActionView();
-        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-
-        return true;
-    }
+		return true;
+	}
 }

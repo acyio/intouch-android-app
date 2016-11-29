@@ -16,29 +16,29 @@ import java.io.IOException;
  */
 
 public class EndpointsAsyncTask extends AsyncTask<Pair<Context, String>, Void, String> {
-    private static MyApi myApiService = null;
-    private Context context;
+	private static MyApi myApiService = null;
+	private Context context;
 
-    @Override
-    protected String doInBackground(Pair<Context, String>... params) {
-        if(myApiService == null) {  // Only do this once
-            MyApi.Builder builder = new MyApi.Builder(AndroidHttp.newCompatibleTransport(), new AndroidJsonFactory(), null)
-                    .setRootUrl("https://intouch-150917.appspot.com/_ah/api/");
+	@Override
+	protected String doInBackground(Pair<Context, String>... params) {
+		if (myApiService == null) { // Only do this once
+			MyApi.Builder builder = new MyApi.Builder(AndroidHttp.newCompatibleTransport(), new AndroidJsonFactory(),
+					null).setRootUrl("https://intouch-150917.appspot.com/_ah/api/");
 
-            myApiService = builder.build();
-        }
+			myApiService = builder.build();
+		}
 
-        context = params[0].first;
-        String name = params[0].second;
-        try {
-            return myApiService.sayHi(name).execute().getData();
-        } catch (IOException e) {
-            return e.getMessage();
-        }
-    }
+		context = params[0].first;
+		String name = params[0].second;
+		try {
+			return myApiService.sayHi(name).execute().getData();
+		} catch (IOException e) {
+			return e.getMessage();
+		}
+	}
 
-    @Override
-    protected void onPostExecute(String result) {
-        Toast.makeText(context, result, Toast.LENGTH_LONG).show();
-    }
+	@Override
+	protected void onPostExecute(String result) {
+		Toast.makeText(context, result, Toast.LENGTH_LONG).show();
+	}
 }
