@@ -105,7 +105,7 @@ public class Database {
 	            "\nName: " + c.getName() +
 	            "\nPhone #: " + c.getPhoneNumber() + 
 	            "\nEmail: " + c.getEmail();
-	      if (c.getCategory().equals("business"))
+	      if (c.getCategory().equals("Business"))
 	         result += "\nLinkedIn URL: " + ((BusinessContact) c).getLinkedInURL();
 	      result += "\n----------\n";
 	   }
