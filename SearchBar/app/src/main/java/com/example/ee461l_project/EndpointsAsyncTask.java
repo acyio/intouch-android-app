@@ -5,11 +5,9 @@ import android.os.AsyncTask;
 import android.util.Pair;
 import android.widget.Toast;
 
-import com.example.shan.intouchbackend.myApi.MyApi;
+import com.example.shan.myapplication.backend.myApi.MyApi;
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
-import com.google.api.client.googleapis.services.AbstractGoogleClientRequest;
-import com.google.api.client.googleapis.services.GoogleClientRequestInitializer;
 
 import java.io.IOException;
 
@@ -20,7 +18,6 @@ import java.io.IOException;
 public class EndpointsAsyncTask extends AsyncTask<Pair<Context, String>, Void, String> {
     private static MyApi myApiService = null;
     private Context context;
-    protected Database db;
 
     @Override
     protected String doInBackground(Pair<Context, String>... params) {
@@ -29,21 +26,15 @@ public class EndpointsAsyncTask extends AsyncTask<Pair<Context, String>, Void, S
                     .setRootUrl("https://intouch-150917.appspot.com/_ah/api/");
 
             myApiService = builder.build();
-            db = new Database();
         }
 
         context = params[0].first;
         String name = params[0].second;
-
         try {
             return myApiService.sayHi(name).execute().getData();
         } catch (IOException e) {
             return e.getMessage();
         }
-    }
-
-    public Database getDB(){
-        return db;
     }
 
     @Override
