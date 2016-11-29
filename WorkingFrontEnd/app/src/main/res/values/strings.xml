@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">EE461L_Project</string>
+    <string name="search_hint">names, emails, phone #s</string>
+    <string name="view_profile_button">View Your Profile/Update Your Profile</string>
+    <string name="view_contact_button">View Your Contacts</string>
+    <string name="search_menu">Search</string>
+    <string name="name_button">Update Your Name</string>
+    <string name="phone_button">Update Your Phone Number</string>
+    <string name="email_button">Update Your Email Address</string>
+    <string name="view_contact">View this contact\'s info</string>
+    <string name="add_contact">Add this contact</string>
+    <string name="search_locate">Search for new contacts!</string>
+    <string name="edit_profile">Edit Your Information</string>
+    <string name="edit_name">Update Your Name If Necessary</string>
+    <string name="edit_phone">Update Your Phone Number If Necessary</string>
+    <string name="edit_email">Update Your Email Address If Necessary</string>
+    <string name="edit_URL">Update Your LinkedIn URL If Necessary</string>
+    <string name="submit_changes">Submit Your Changes</string>
+
+</resources>
