@@ -58,13 +58,7 @@ public class ViewYourContactsActivity extends AppCompatActivity {
                 Contact currentContact = yourList.get(index);
                 Intent intent = new Intent(this, ProfileViewActivity.class);
                 Bundle contactInfo = new Bundle();
-                contactInfo.putString("NAME", currentContact.getName());
-                contactInfo.putString("PHONE", currentContact.getPhoneNumber());
-                contactInfo.putString("EMAIL", currentContact.getEmail());
-                if(currentContact.category.equals("business")) {
-                    contactInfo.putString("URL", ((BusinessContact)currentContact).getLinkedInURL());
-                }
-                contactInfo.putString("CAT", currentContact.category);
+                contactInfo.putParcelable("CONTACT", currentContact);
                 intent.putExtras(contactInfo);
                 startActivity(intent);
                 return true;

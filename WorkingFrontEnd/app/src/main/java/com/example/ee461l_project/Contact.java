@@ -38,6 +38,7 @@ public abstract class Contact implements Observer, Parcelable {
 		this.name = input.readString();
 		this.email = input.readString();
 		this.phoneNumber = input.readString();
+		this.signature = input.readInt();
 	}
 
 	public String getCategory() {return category;}
@@ -60,6 +61,10 @@ public abstract class Contact implements Observer, Parcelable {
 	public void setEmail(String newEmail) {
 		email = newEmail;
 		this.changed = true;
+	}
+
+	public void newLocalList() {
+		this.localList = new ArrayList<Contact>();
 	}
 
 	public void update() {

@@ -40,6 +40,7 @@ public class BusinessContact extends Contact implements Parcelable{
 		dest.writeString(this.email);
 		dest.writeString(this.phoneNumber);
 		dest.writeString(this.linkedInURL);
+		dest.writeInt(this.signature);
 
 	}
 

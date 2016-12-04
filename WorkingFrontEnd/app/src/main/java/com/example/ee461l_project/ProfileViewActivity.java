@@ -17,13 +17,14 @@ public class ProfileViewActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         Bundle contactInfo = intent.getExtras();
-        String category = contactInfo.getString("CAT");
-        String name = "Name: " + contactInfo.getString("NAME");
-        String phone = "Phone Number: " + contactInfo.getString("PHONE");
-        String email = "Email Address: " + contactInfo.getString("EMAIL");
+        Contact person = contactInfo.getParcelable("CONTACT");
+        String category = person.getCategory();
+        String name = "Name: " + person.getName();
+        String phone = "Phone Number: " + person.getPhoneNumber();
+        String email = "Email Address: " + person.getEmail();
         String URL = "";
         if(category.equals("business")) {
-            URL = "LinkedIn URL: " + contactInfo.getString("URL");
+            URL = "LinkedIn URL: " + ((BusinessContact)person).getLinkedInURL();
         }
 
         ArrayList<String> profile = new ArrayList<String>();

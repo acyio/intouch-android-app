@@ -8,20 +8,14 @@ import android.widget.EditText;
 
 public class UpdateBusinessProfileActivity extends AppCompatActivity {
 
-    String name;
-    String phone;
-    String email;
-    String URL;
+    BusinessContact oldBContact;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Intent profileIntent = getIntent();
         Bundle oldInfo = profileIntent.getExtras();
-        name = oldInfo.getString("OLD_B_NAME");
-        phone = oldInfo.getString("OLD_B_PHONE");
-        email =  oldInfo.getString("OLD_B_EMAIL");
-        URL = oldInfo.getString("OLD_B_URL");
+        oldBContact = oldInfo.getParcelable("OLD_B_CONTACT");
         setContentView(R.layout.activity_update_business_profile);
     }
 
@@ -35,26 +29,22 @@ public class UpdateBusinessProfileActivity extends AppCompatActivity {
         String new_email = newEmail.getText().toString();
         String new_URL = newURL.getText().toString();
         if(!new_name.equals("")) {
-            name = new_name;
+            oldBContact.setName(new_name);
         }
         if(!new_phone.equals("")) {
-            phone = new_phone;
+            oldBContact.setName(new_phone);
         }
         if(!new_email.equals("")) {
-            email = new_email;
+            oldBContact.setEmail(new_email);
         }
         if(!new_URL.equals("")) {
-            URL = new_URL;
+            oldBContact.setLinkedInURL(new_URL);
         }
 
         Intent intent = new Intent(this, UploadSearchActivity.class);
         Bundle updateInfo = new Bundle();
-        updateInfo.putString("NEW_NAME", name);
-        updateInfo.putString("NEW_PHONE", phone);
-        updateInfo.putString("NEW_EMAIL", email);
-        updateInfo.putString("NEW_LINKED_IN", URL);
-        updateInfo.putString("NEW_CAT", "business");
-        UploadSearchActivity.done = false;
+        UploadSearchActivity.update = true;
+        updateInfo.putParcelable("UPDATED_CONTACT", oldBContact);
         intent.putExtras(updateInfo);
         startActivity(intent);
 

@@ -28,6 +28,7 @@ public class PersonalContact extends Contact implements Parcelable {
 		dest.writeString(this.name);
 		dest.writeString(this.email);
 		dest.writeString(this.phoneNumber);
+		dest.writeInt(this.signature);
 	}
 
 	public static final Parcelable.Creator<PersonalContact> CREATOR =

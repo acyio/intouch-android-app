@@ -40,23 +40,40 @@ public class InitializationActivity extends AppCompatActivity {
             } else {
                 personalBusiness = "business";
             }
-
+            Contact newPerson;
+            if(personalBusiness.equals("personal")) {
+                newPerson = new PersonalContact(personalBusiness, nameString, phoneString, emailString);
+            }
+            else {
+                newPerson = new BusinessContact(personalBusiness, nameString, phoneString, emailString, linkedString);
+            }
             Intent intent = new Intent(this, UploadSearchActivity.class);
             Bundle contactInfo = new Bundle();
-            contactInfo.putString("NEW_NAME", nameString);
-            contactInfo.putString("NEW_PHONE", phoneString);
-            contactInfo.putString("NEW_EMAIL", emailString);
-            if(personalBusiness.equals("business")) {
-                contactInfo.putString("NEW_LINKED_IN", linkedString);
-            }
-            contactInfo.putString("NEW_CAT", personalBusiness);
+            contactInfo.putParcelable("NEW_PERSON", newPerson);
             intent.putExtras(contactInfo);
             UploadSearchActivity.initialized = true;
             startActivity(intent);
         }
         else {
             requiredText.setTextColor(Color.RED);
-            requiredText.setText("Not all required fields were filled\n(Name, Phone Number, Email Address)");
+            String errorString = "Not all required fields were filled\n(";
+            if(nameString.equals("")) {
+                errorString += "Name";
+            }
+            if(phoneString.equals("")) {
+                if(nameString.equals("")) {
+                    errorString += ", ";
+                }
+                errorString += "Phone Number";
+            }
+            if(emailString.equals("")) {
+                if(nameString.equals("") || phoneString.equals("")) {
+                    errorString += ", ";
+                }
+                errorString += "Email Address";
+            }
+            errorString += ")";
+            requiredText.setText(errorString);
         }
 
 

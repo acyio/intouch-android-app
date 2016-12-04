@@ -10,11 +10,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 public class ViewInformationActivity extends AppCompatActivity {
-    private String name;
-    private String phone;
-    private String email;
-    private String URL;
-    private String cat;
+    private Contact currentContact;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,26 +18,23 @@ public class ViewInformationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_view_information);
 
         Intent intent = getIntent();
+
+        //Bundle contactInfo = intent.getExtras();
         Bundle contactInfo = intent.getExtras();
-        name = contactInfo.getString("CURRENT_NAME");
-        String view_name = "Name: " + name;
-        phone = contactInfo.getString("CURRENT_PHONE");
-        String view_phone = "Phone Number: " + phone;
-        email = contactInfo.getString("CURRENT_EMAIL");
-        String view_email = "Email Address: " + email;
-        cat = contactInfo.getString("CURRENT_CAT");
-        URL = "";
+        currentContact = contactInfo.getParcelable("CURRENT_INFO");
+        String view_name = "Name: " + currentContact.getName();
+        String view_phone = "Phone Number: " + currentContact.getPhoneNumber();
+        String view_email = "Email Address: " + currentContact.getEmail();
         String view_URL = "";
-        if(cat.equals("business")) {
-            URL = contactInfo.getString("CURRENT_URL");
-            view_URL = "LinkedIn URL: " + URL;
+        if(currentContact.getCategory().equals("business")) {
+            view_URL = "LinkedIn URL: " + ((BusinessContact)currentContact).getLinkedInURL();
         }
-        String view_cat = "Current Category: " + cat;
+        String view_cat = "Current Category: " + currentContact.getCategory();
         ArrayList<String> profile = new ArrayList<String>();
         profile.add(view_name);
         profile.add(view_phone);
         profile.add(view_email);
-        if(cat.equals("business")) {
+        if(currentContact.getCategory().equals("business")) {
             profile.add(view_URL);
         }
         profile.add(view_cat);
@@ -54,22 +47,17 @@ public class ViewInformationActivity extends AppCompatActivity {
     }
 
     public void updateProfile(View view) {
-        if(cat.equals("personal")) {
+        if(currentContact.getCategory().equals("personal")) {
             Intent intent = new Intent(this, UpdatePersonalProfileActivity.class);
             Bundle currentInfo = new Bundle();
-            currentInfo.putString("OLD_P_NAME", name);
-            currentInfo.putString("OLD_P_PHONE", phone);
-            currentInfo.putString("OLD_P_EMAIL", email);
+            currentInfo.putParcelable("OLD_P_CONTACT", currentContact);
             intent.putExtras(currentInfo);
             startActivity(intent);
         }
         else {
             Intent intent = new Intent(this, UpdateBusinessProfileActivity.class);
             Bundle currentInfo = new Bundle();
-            currentInfo.putString("OLD_B_NAME", name);
-            currentInfo.putString("OLD_B_PHONE", phone);
-            currentInfo.putString("OLD_B_EMAIL", email);
-            currentInfo.putString("OLD_B_URL", URL);
+            currentInfo.putParcelable("OLD_B_CONTACT", currentContact);
             intent.putExtras(currentInfo);
             startActivity(intent);
         }
