@@ -1,4 +1,4 @@
-package com.example.ee461l_project;
+package com.example.intouch;
 
 public interface Observer {
 	public void update();

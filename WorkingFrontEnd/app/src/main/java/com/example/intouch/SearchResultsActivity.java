@@ -1,10 +1,8 @@
-package com.example.ee461l_project;
+package com.example.intouch;
 
-import android.app.Activity;
-import android.app.ListActivity;
-import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.view.ContextMenu;
 import android.view.MenuItem;
@@ -13,10 +11,11 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Iterator;
-
-import static android.R.id.list;
 
 /**
  * Created by Issac on 11/19/2016.
@@ -43,7 +42,27 @@ public class SearchResultsActivity extends AppCompatActivity {
         Bundle searchBundle = intent.getExtras();
         String query = searchBundle.getString("SEARCH_QUERY");
         localList = searchBundle.getParcelableArrayList("LOCAL_LIST");
-        currentDatabase.allContacts = searchBundle.getParcelableArrayList("DATABASE");
+
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+        try {
+            Socket socketConnection = new Socket("128.83.192.235", 6666);
+            ObjectOutputStream clientOutputStream = new
+                    ObjectOutputStream(socketConnection.getOutputStream());
+            ObjectInputStream clientInputStream = new
+                    ObjectInputStream(socketConnection.getInputStream());
+
+            clientOutputStream.writeObject(new InputObject(2, null));
+            currentDatabase = ((OutputObject)clientInputStream.readObject()).getDB();
+
+            clientOutputStream.close();
+            clientInputStream.close();
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+        //currentDatabase.allContacts = searchBundle.getParcelableArrayList("DATABASE");
         
         foundContacts = currentDatabase.searchContacts(query);
         Iterator<Contact> remover = foundContacts.iterator();

@@ -1,12 +1,11 @@
-package com.example.ee461l_project;
-
-
+package com.example.intouch;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public abstract class Contact implements Observer, Parcelable {
+public abstract class Contact implements Observer, Parcelable, Serializable {
 	protected String category; //business or personal
 	protected String name;
 	protected String phoneNumber;
@@ -15,7 +14,7 @@ public abstract class Contact implements Observer, Parcelable {
 	protected boolean changed;
 	protected ArrayList<Contact> localList;
 	protected int signature;
-
+	private static final long serialVersionUID = 1L;
 	public Contact(String cat, String name, String number, String email){
 		this.category = cat;
 		this.name = name;

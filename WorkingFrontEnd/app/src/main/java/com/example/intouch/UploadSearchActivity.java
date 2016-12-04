@@ -1,18 +1,18 @@
-package com.example.ee461l_project;
-
+package com.example.intouch;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Parcelable;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.os.StrictMode;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.View;
 import android.widget.TextView;
 
-import java.sql.BatchUpdateException;
-import java.util.ArrayList;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
 
 public class UploadSearchActivity extends AppCompatActivity {
     public static boolean initialized = false;
@@ -26,19 +26,47 @@ public class UploadSearchActivity extends AppCompatActivity {
 
     private void databaseFill() {
         PersonalContact Alice = new PersonalContact("personal", "Alice", "123-456-7890", "Alice@gmail.com");
+        Alice.generateUniqueSignature(currentDatabase);
         PersonalContact Bob = new PersonalContact("personal", "Bob", "012-451-4143", "Bob@gmail.com");
+        Bob.generateUniqueSignature(currentDatabase);
         PersonalContact Callie = new PersonalContact("personal", "Callie", "111-111-1111", "Callie@gmail.com");
+        Callie.generateUniqueSignature(currentDatabase);
         PersonalContact Dan = new PersonalContact("personal", "Dan", "222-222-2222", "Dan@gmail.com");
+        Dan.generateUniqueSignature(currentDatabase);
         currentDatabase.addContact(Alice);
         currentDatabase.addContact(Bob);
         currentDatabase.addContact(Callie);
         currentDatabase.addContact(Dan);
+
+        try {
+            Socket socketConnection = new Socket("128.83.192.235", 6666);
+            ObjectOutputStream clientOutputStream = new
+                    ObjectOutputStream(socketConnection.getOutputStream());
+            ObjectInputStream clientInputStream = new
+                    ObjectInputStream(socketConnection.getInputStream());
+
+            clientOutputStream.writeObject(new InputObject(0, (Contact)Alice));
+            currentDatabase = ((OutputObject)clientInputStream.readObject()).getDB();
+            clientOutputStream.writeObject(new InputObject(0, (Contact)Bob));
+            currentDatabase = ((OutputObject)clientInputStream.readObject()).getDB();
+            clientOutputStream.writeObject(new InputObject(0, (Contact)Callie));
+            currentDatabase = ((OutputObject)clientInputStream.readObject()).getDB();
+            clientOutputStream.writeObject(new InputObject(0, (Contact)Dan));
+            currentDatabase = ((OutputObject)clientInputStream.readObject()).getDB();
+
+            clientOutputStream.close();
+            clientInputStream.close();
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         if(!initialized && !done) {
-            databaseFill();
+            //databaseFill();
             Intent intent = new Intent(this, InitializationActivity.class);
             startActivity(intent);
         }
@@ -47,6 +75,26 @@ public class UploadSearchActivity extends AppCompatActivity {
             Intent uploadIntent = getIntent();
             Bundle contactInfo = uploadIntent.getExtras();
             Contact newPerson = contactInfo.getParcelable("NEW_PERSON");
+            newPerson.generateUniqueSignature(currentDatabase);
+
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+            try {
+                Socket socketConnection = new Socket("128.83.192.235", 6666);
+                ObjectOutputStream clientOutputStream = new ObjectOutputStream(socketConnection.getOutputStream());
+                ObjectInputStream clientInputStream = new ObjectInputStream(socketConnection.getInputStream());
+
+                clientOutputStream.writeObject(new InputObject(0, (Contact)newPerson));
+                currentDatabase = ((OutputObject)clientInputStream.readObject()).getDB();
+
+                clientOutputStream.close();
+                clientInputStream.close();
+
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+
+
             if (newPerson.getCategory().equals("personal")) {
                 currentPContact = (PersonalContact)newPerson;
                 currentPContact.newLocalList();
@@ -75,6 +123,27 @@ public class UploadSearchActivity extends AppCompatActivity {
             Intent updateIntent = getIntent();
             Bundle updateInfo = updateIntent.getExtras();
             Contact updateContact = updateInfo.getParcelable("UPDATED_CONTACT");
+
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+            try {
+                Socket socketConnection = new Socket("128.83.192.235", 6666);
+                ObjectOutputStream clientOutputStream = new
+                        ObjectOutputStream(socketConnection.getOutputStream());
+                ObjectInputStream clientInputStream = new
+                        ObjectInputStream(socketConnection.getInputStream());
+
+                clientOutputStream.writeObject(new InputObject(1, updateContact));
+                currentDatabase = ((OutputObject)clientInputStream.readObject()).getDB();
+
+                clientOutputStream.close();
+                clientInputStream.close();
+
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+
+
             if(currentCat) {
                 currentPContact.setName(updateContact.getName());
                 currentPContact.setPhoneNumber(updateContact.getPhoneNumber());

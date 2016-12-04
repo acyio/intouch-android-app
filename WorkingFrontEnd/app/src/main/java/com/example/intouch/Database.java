@@ -1,42 +1,40 @@
-package com.example.ee461l_project;
+package com.example.intouch;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Database  {
+public class Database implements Serializable {
 	protected ArrayList<Contact> allContacts;
-
+	private static final long serialVersionUID = 1L;
 	public Database(){
 		allContacts = new ArrayList<Contact>();
 	}
 
 
-	public boolean isInDatabase(String name){
+	public boolean isInDatabase(int signature){
 		for (int i = 0; i < allContacts.size(); i++){
-			if (name.equals(allContacts.get(i).getName()))
+			if (signature == (allContacts.get(i).getSignature()))
 				return true;
 		}
 		return false;
 	}
 
 	public boolean addContact(Contact c){
-		if (isInDatabase(c.getName())) return false;
+		if (isInDatabase(c.getSignature())) return false;
 		allContacts.add(c);
 		return true;
 	}
 
-	public int findInDatabase(String name){
-		if (!isInDatabase(name)) return -1;
+	public int findInDatabase(int signature){
+		if (!isInDatabase(signature)) return -1;
 		int i = 0;
-		while (!name.equals(allContacts.get(i).getName()))
+		while (signature != (allContacts.get(i).getSignature()))
 			i++;
 		return i;
 	}
 
-	public boolean deleteContact(String name){
-		int position = findInDatabase(name);
+	public boolean deleteContact(int signature){
+		int position = findInDatabase(signature);
 		if (position == -1) return false;
 		allContacts.remove(position);
 		return true;
@@ -46,37 +44,35 @@ public class Database  {
 		return allContacts.size();
 	}
 
-	public boolean changePersonalToBusiness(String name, String URL){
-		PersonalContact temp = (PersonalContact) getContact(name);
+	public boolean changePersonalToBusiness(int signature, String URL){
+		PersonalContact temp = (PersonalContact) getContact(signature);
 		if (temp == null) return false;
 		BusinessContact newContact = (BusinessContact) Factory.createBusinessContact(temp.name, temp.phoneNumber, temp.email, URL);
 		newContact.changed = true;
-		deleteContact(name);
+		deleteContact(signature);
 		addContact(newContact);
 
 		return true;
 
 	}
 
-	public boolean changeBusinessToPersonal(String name){
-		BusinessContact temp = (BusinessContact) getContact(name);
+	public boolean changeBusinessToPersonal(int signature){
+		BusinessContact temp = (BusinessContact) getContact(signature);
 		if (temp == null) return false;
 		PersonalContact newContact = (PersonalContact) Factory.createContact(temp.name, temp.phoneNumber, temp.email);
 		newContact.changed = true;
-		deleteContact(name);
+		deleteContact(signature);
 		addContact(newContact);
 		return true;
 	}
 
-	public Contact getContact(String name){
-		int position = findInDatabase(name);
+	public Contact getContact(int signature){
+		int position = findInDatabase(signature);
 		if (position == -1) return null;
 		return allContacts.get(position);
 	}
 
 	public boolean push(){
-		//automatically update each contact in each node's list upon change
-		//this is the notifyObservers method
 		try {
 			for(Contact c : allContacts) {
 				c.update();
@@ -85,17 +81,16 @@ public class Database  {
 			return true;
 		}
 		catch (Exception e) {
-			return false; //Something went wrong
+			return false;
 		}
 	}
 
 	public boolean pull(){
-		//poll each node for updated info; update master list
 		try {
 			return true;
 		}
 		catch (Exception e) {
-			return false; //Something went wrong
+			return false;
 		}
 	}
 

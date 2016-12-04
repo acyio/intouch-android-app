@@ -1,7 +1,6 @@
-package com.example.ee461l_project;
-
-import android.support.v7.app.AppCompatActivity;
+package com.example.intouch;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 public class inTouch extends AppCompatActivity {
 

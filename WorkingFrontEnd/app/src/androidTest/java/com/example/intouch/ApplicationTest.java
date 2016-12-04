@@ -1,4 +1,4 @@
-package com.example.ee461l_project;
+package com.example.intouch;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

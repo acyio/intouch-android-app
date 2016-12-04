@@ -1,14 +1,12 @@
-package com.example.ee461l_project;
+package com.example.intouch;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 
-import com.example.ee461l_project.R;
-import com.example.ee461l_project.UploadSearchActivity;
+import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
 

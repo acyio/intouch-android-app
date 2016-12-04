@@ -1,11 +1,13 @@
-package com.example.ee461l_project;
+package com.example.intouch;
 
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class PersonalContact extends Contact implements Parcelable {
+import java.io.Serializable;
 
+public class PersonalContact extends Contact implements Parcelable, Serializable {
+	private static final long serialVersionUID = 1L;
 	public PersonalContact(String cat, String name, String number, String email) {
 		super(cat, name, number, email);
 	}

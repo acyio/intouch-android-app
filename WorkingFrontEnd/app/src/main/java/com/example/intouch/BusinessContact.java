@@ -1,11 +1,12 @@
-package com.example.ee461l_project;
-
+package com.example.intouch;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class BusinessContact extends Contact implements Parcelable{
-	protected String linkedInURL; //in business contacts only
+import java.io.Serializable;
 
+public class BusinessContact extends Contact implements Parcelable, Serializable{
+	protected String linkedInURL; //in business contacts only
+	private static final long serialVersionUID = 1L;
 	public BusinessContact(String cat, String name, String number, String email, String url){
 		super(cat, name, number, email);
 		this.linkedInURL = url;

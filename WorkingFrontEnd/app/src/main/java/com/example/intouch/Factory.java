@@ -1,4 +1,4 @@
-package com.example.ee461l_project;
+package com.example.intouch;
 
 //since contact is abstract, only instantiates while returning, since contact cannot be instantiated
 public class Factory {
