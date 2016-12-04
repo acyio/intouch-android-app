@@ -14,6 +14,7 @@ public abstract class Contact implements Observer, Parcelable {
 	//protected String linkedInURL; //in business contacts only
 	protected boolean changed;
 	protected ArrayList<Contact> localList;
+	protected int signature;
 
 	public Contact(String cat, String name, String number, String email){
 		this.category = cat;
@@ -22,6 +23,14 @@ public abstract class Contact implements Observer, Parcelable {
 		this.email = email;
 		changed = false;
 		this.localList = new ArrayList<Contact>();
+		this.signature = (int)(Math.random()*10000);
+
+		for (int i = 0; i < this.localList.size(); i++){ //iterate through contacts
+			if (this.signature == this.localList.get(i).signature){ //check collision
+				this.signature = (int)(Math.random()*10000); //regenerate if collision
+				i = 0; //check list again
+			}
+		}
 	}
 
 	public Contact(Parcel input) {
@@ -36,6 +45,7 @@ public abstract class Contact implements Observer, Parcelable {
 	public String getPhoneNumber() {return phoneNumber;}
 	public String getEmail() {return email;}
 	public ArrayList<Contact> getLocalList() {return localList;}
+	public int getSignature() { return signature;}
 	//public String getLinkedInURL() {return linkedInURL; //in business contact only}
 
 
@@ -73,5 +83,15 @@ public abstract class Contact implements Observer, Parcelable {
 			return false;
 		}
 
+	}
+
+	public void generateUniqueSignature(Database db){
+		ArrayList<Contact> theList = db.allContacts;
+		for (int i = 0; i < theList.size(); i++){ //iterate through contacts
+			if (this.signature == theList.get(i).signature){ //check collision
+				this.signature = (int)(Math.random()*10000); //regenerate if collision
+				i = 0; //check list again
+			}
+		}
 	}
 }
