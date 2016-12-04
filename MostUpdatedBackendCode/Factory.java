@@ -6,6 +6,6 @@ public class Factory {
 		return new PersonalContact("personal", name, num, email);
 	}
 	public static Contact createBusinessContact(String name, String num, String email, String url){
-	   return new BusinessContact("business", name, num, email, url);
+		return new BusinessContact("business", name, num, email, url);
 	}
 }
