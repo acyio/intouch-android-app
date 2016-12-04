@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import static android.R.id.list;
 
@@ -45,9 +46,13 @@ public class SearchResultsActivity extends AppCompatActivity {
         currentDatabase.allContacts = searchBundle.getParcelableArrayList("DATABASE");
         
         foundContacts = currentDatabase.searchContacts(query);
-        for(Contact c : foundContacts) {
-            if(localList.contains(c)) {
-                foundContacts.remove((c));
+        Iterator<Contact> remover = foundContacts.iterator();
+        while(remover.hasNext()) {
+            Contact comp =  remover.next();
+            for(Contact c : localList) {
+                if(c.getSignature() == comp.getSignature()) {
+                    remover.remove();
+                }
             }
         }
         ArrayList<String> contactNames = new ArrayList<String>();
