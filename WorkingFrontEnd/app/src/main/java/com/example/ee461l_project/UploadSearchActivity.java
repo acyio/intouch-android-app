@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.View;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -51,15 +52,20 @@ public class UploadSearchActivity extends AppCompatActivity {
             if (cat.equals("business")) {
                 linked = contactInfo.getString("NEW_LINKED_IN");
             }
+
             if (cat.equals("personal")) {
                 currentPContact = new PersonalContact(cat, name, phone, email);
                 //currentDatabase.addContact(currentPContact);
                 currentCat = true;
+
             } else {
                 currentBContact = new BusinessContact(cat, name, phone, email, linked);
                 //currentDatabase.addContact(currentBContact);
                 currentCat = false;
             }
+
+
+
             done = true;
         }
         if(added) {
@@ -85,6 +91,18 @@ public class UploadSearchActivity extends AppCompatActivity {
             }
         }
         setContentView(R.layout.activity_upload_search);
+        TextView greetingView = (TextView) findViewById(R.id.greeting_view);
+        greetingView.setTextSize(20);
+        if(currentCat) {
+            if(currentPContact != null)
+                greetingView.setText("Welcome " + currentPContact.getName() + ", feel free to search our database, " +
+                        "view your contacts, or edit your information");
+        }
+        else {
+            if(currentBContact != null)
+                greetingView.setText("Welcome " + currentBContact.getName() + ", feel free to search, view, or edit");
+        }
+
         handleIntent(getIntent());
 
 

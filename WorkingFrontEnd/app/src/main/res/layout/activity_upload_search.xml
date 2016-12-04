@@ -42,13 +42,13 @@
         android:layout_marginEnd="11dp" />
 
     <TextView
-        android:text=""
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/greetingView"
-        android:layout_alignBottom="@+id/arrow"
+        android:id="@+id/greeting_view"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="25dp"
-        android:textSize="30dp"/>
+        android:layout_marginBottom="20dp"
+        android:layout_toLeftOf="@id/arrow"
+        android:layout_toStartOf="@id/arrow"
+        android:textSize="30sp"/>
 
 </RelativeLayout>

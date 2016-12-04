@@ -12,6 +12,7 @@
     tools:context="com.example.ee461l_project.InitializationActivity">
 
     <LinearLayout
+
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -23,7 +24,7 @@
             android:layout_height="match_parent"
             app:srcCompat="@drawable/intouch"
             android:id="@+id/imageView"
-            android:layout_weight="2"
+            android:layout_weight="2.5"
             android:src="@drawable/intouch" />
 
         <LinearLayout
@@ -31,13 +32,22 @@
             android:layout_width="match_parent"
             android:layout_height="356dp">
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/required_text"
+                android:layout_gravity="center_horizontal"
+                android:ems="10"
+                android:textColorLink="@android:color/holo_blue_dark"/>
+
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
                 android:ems="10"
+                android:windowSoftInputMode="adjustPan"
                 android:id="@+id/name_edit"
-                android:hint="Name"
+                android:hint="@string/name_hint"
                 android:gravity="center_horizontal"
                 android:textColorLink="@android:color/holo_blue_dark" />
 
@@ -47,8 +57,9 @@
                 android:layout_height="wrap_content"
                 android:inputType="phone"
                 android:ems="10"
+                android:windowSoftInputMode="adjustPan"
                 android:id="@+id/phone_edit"
-                android:hint="Phone Number"
+                android:hint="@string/phone_hint"
                 android:gravity="center_horizontal"
                 android:textColorLink="@android:color/holo_blue_dark" />
 
@@ -57,8 +68,9 @@
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
                 android:ems="10"
+                android:windowSoftInputMode="adjustPan"
                 android:id="@+id/email_edit"
-                android:hint="Email Address"
+                android:hint="@string/email_hint"
                 android:gravity="center_horizontal"
                 android:textColorLink="@android:color/holo_blue_dark" />
 
@@ -68,21 +80,26 @@
                 android:inputType="textPersonName"
                 android:ems="10"
                 android:id="@+id/linked_in_edit"
-                android:hint="LinkedIn URL (Optional)"
+                android:hint="@string/URL_hint"
                 android:gravity="center_horizontal"
-                android:textColorLink="@android:color/holo_blue_dark" />
+                android:textColorLink="@android:color/holo_blue_dark"
+                android:windowSoftInputMode="adjustPan"/>
 
-            <Button
-                android:text="Submit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/submit_button"
-                android:onClick="submitInfo"
-                android:background="@color/colorPrimary"
-                android:textColor="@android:color/white"
-                 />
+
+
+
         </LinearLayout>
 
     </LinearLayout>
+    <Button
+        android:text="@string/button_direction"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/submit_button"
+        android:onClick="submitInfo"
+        android:gravity="center_horizontal"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorPrimary"
+        android:textColor="@android:color/white" />
 
 </RelativeLayout>

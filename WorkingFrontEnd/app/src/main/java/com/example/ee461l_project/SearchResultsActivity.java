@@ -32,7 +32,6 @@ public class SearchResultsActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        countdown--;
         setContentView(R.layout.activity_search_results);
 
         resultView = (ListView)findViewById(R.id.searchList);
