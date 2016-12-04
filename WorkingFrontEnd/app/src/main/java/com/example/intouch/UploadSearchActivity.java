@@ -74,7 +74,9 @@ public class UploadSearchActivity extends AppCompatActivity {
         if(initialized && !done) {
             Intent uploadIntent = getIntent();
             Bundle contactInfo = uploadIntent.getExtras();
+
             Contact newPerson = contactInfo.getParcelable("NEW_PERSON");
+
             newPerson.generateUniqueSignature(currentDatabase);
 
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();

@@ -40,6 +40,8 @@ public abstract class Contact implements Observer, Parcelable, Serializable {
 		this.signature = input.readInt();
 	}
 
+	public Contact(){}
+
 	public String getCategory() {return category;}
 	public String getName() {return name;}
 	public String getPhoneNumber() {return phoneNumber;}

@@ -13,8 +13,12 @@ public class BusinessContact extends Contact implements Parcelable, Serializable
 	}
 
 	public BusinessContact(Parcel input) {
-		super(input);
+		this.category = input.readString();
+		this.name = input.readString();
+		this.email = input.readString();
+		this.phoneNumber = input.readString();
 		this.linkedInURL = input.readString();
+		this.signature = input.readInt();
 	}
 
 	public String getCategory() {return category;}
