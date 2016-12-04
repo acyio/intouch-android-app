@@ -94,13 +94,17 @@ public class UploadSearchActivity extends AppCompatActivity {
         TextView greetingView = (TextView) findViewById(R.id.greeting_view);
         greetingView.setTextSize(20);
         if(currentCat) {
-            if(currentPContact != null)
+            if(currentPContact != null) {
                 greetingView.setText("Welcome " + currentPContact.getName() + ", feel free to search our database, " +
                         "view your contacts, or edit your information");
+            }
         }
         else {
-            if(currentBContact != null)
-                greetingView.setText("Welcome " + currentBContact.getName() + ", feel free to search, view, or edit");
+            if(currentBContact != null) {
+                greetingView.setText("Welcome " + currentBContact.getName() + ", feel free to search our database, " +
+                        "view your contacts, or edit your information");
+            }
+
         }
 
         handleIntent(getIntent());

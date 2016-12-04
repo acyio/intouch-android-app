@@ -23,5 +23,7 @@
     <string name="submit_changes">Push Your Changes</string>
     <string name="delete_contact">Delete this contact</string>
     <string name="required_fields">Not all required fields were filled (Name, Phone Number, Email Address)</string>
+    <string name="pull_all">Pull All Contacts</string>
+    <string name="delete_all">Delete All Contacts</string>
 
 </resources>

@@ -9,9 +9,25 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.ee461l_project.inTouch">
 
-    <ListView
-        android:id="@+id/searchList"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="10">
+
+        <ListView
+            android:id="@+id/searchList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+
+        <Button
+            android:id="@+id/pull_all"
+            android:text="@string/pull_all"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:onClick="pullAll"
+            android:layout_weight="9"/>
+    </LinearLayout>
 
 </RelativeLayout>

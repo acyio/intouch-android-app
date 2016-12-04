@@ -10,12 +10,27 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.ee461l_project.ViewYourContactsActivity">
 
-    <ListView
-        android:id="@+id/your_contacts"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="10">
 
 
-    </ListView>
+        <ListView
+            android:id="@+id/your_contacts"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+
+
+        <Button
+            android:id="@+id/delete_all"
+            android:text="@string/delete_all"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:onClick="deleteAll"
+            android:layout_weight="9"/>
+    </LinearLayout>
 
 </RelativeLayout>

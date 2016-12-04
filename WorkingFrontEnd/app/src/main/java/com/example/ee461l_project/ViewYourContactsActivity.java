@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class ViewYourContactsActivity extends AppCompatActivity {
 
     ListView yourContactsView;
-    ArrayList<Contact> yourList;
+    static ArrayList<Contact> yourList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,4 +81,11 @@ public class ViewYourContactsActivity extends AppCompatActivity {
         }
     }
 
+    public void deleteAll(View view) {
+        yourList.clear();
+        Intent intent = new Intent(this, UploadSearchActivity.class);
+        intent.putParcelableArrayListExtra("UPDATED_LOCAL_LIST", yourList);
+        UploadSearchActivity.added = true;
+        startActivity(intent);
+    }
 }

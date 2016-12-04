@@ -24,7 +24,7 @@ import static android.R.id.list;
 public class SearchResultsActivity extends AppCompatActivity {
 
     Database currentDatabase = new Database();
-    ArrayList<Contact> foundContacts = new ArrayList<Contact>();
+    static ArrayList<Contact> foundContacts = new ArrayList<Contact>();
     ArrayList<Contact> localList = new ArrayList<Contact>();
     ListView resultView;
 
@@ -61,9 +61,6 @@ public class SearchResultsActivity extends AppCompatActivity {
         ArrayAdapter<String> searchAdapter =
                 new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, contactNames);
         resultView.setAdapter(searchAdapter);
-
-
-
 
     }
 
@@ -106,5 +103,15 @@ public class SearchResultsActivity extends AppCompatActivity {
             default:
                 return super.onContextItemSelected(item);
         }
+    }
+
+    public void pullAll(View view) {
+        for(Contact c : foundContacts) {
+            localList.add(c);
+        }
+        Intent intent = new Intent(this, UploadSearchActivity.class);
+        intent.putParcelableArrayListExtra("UPDATED_LOCAL_LIST", localList);
+        UploadSearchActivity.added = true;
+        startActivity(intent);
     }
 }
