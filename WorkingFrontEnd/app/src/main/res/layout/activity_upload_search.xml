@@ -30,16 +30,6 @@
         android:layout_centerHorizontal="true"
         android:layout_above="@id/uploadButton"/>
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/arrow"
-        android:id="@+id/arrow"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="9.5dp"
-        android:layout_marginEnd="11dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -47,8 +37,6 @@
         android:id="@+id/greeting_view"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="20dp"
-        android:layout_toLeftOf="@id/arrow"
-        android:layout_toStartOf="@id/arrow"
         android:textSize="30sp"/>
 
 </RelativeLayout>
