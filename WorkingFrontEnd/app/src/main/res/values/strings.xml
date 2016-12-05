@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">EE461L_Project</string>
+    <string name="app_name">inTouch</string>
     <string name="search_hint">names, emails, phone #s</string>
     <string name="view_profile_button">View Your Profile/Update Your Profile</string>
     <string name="view_contact_button">View Your Contacts</string>
