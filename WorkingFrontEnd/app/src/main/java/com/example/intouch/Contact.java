@@ -75,7 +75,10 @@ public abstract class Contact implements Observer, Parcelable, Serializable {
 	public boolean contactMatch(String query) {
 		String significantEmail = this.getEmail(); //will cut off any part of email after and including the @ symbol
 		int index = significantEmail.indexOf('@');
-		significantEmail = significantEmail.substring(0, index);
+		if (index != -1) {
+			significantEmail = significantEmail.substring(0, index);
+		}
+		//etc
 		if(this.getName().toLowerCase().contains(query.toLowerCase())) {
 			return true;
 		}
