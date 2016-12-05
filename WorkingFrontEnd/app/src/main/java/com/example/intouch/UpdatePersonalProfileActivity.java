@@ -30,7 +30,7 @@ public class UpdatePersonalProfileActivity extends AppCompatActivity {
             oldPContact.setName(new_name);
         }
         if(!new_phone.equals("")) {
-            oldPContact.setName(new_phone);
+            oldPContact.setPhoneNumber(new_phone);
         }
         if(!new_email.equals("")) {
             oldPContact.setEmail(new_email);

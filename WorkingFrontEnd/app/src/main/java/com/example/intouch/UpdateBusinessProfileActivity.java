@@ -31,7 +31,7 @@ public class UpdateBusinessProfileActivity extends AppCompatActivity {
             oldBContact.setName(new_name);
         }
         if(!new_phone.equals("")) {
-            oldBContact.setName(new_phone);
+            oldBContact.setPhoneNumber(new_phone);
         }
         if(!new_email.equals("")) {
             oldBContact.setEmail(new_email);
