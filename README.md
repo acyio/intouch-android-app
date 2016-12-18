@@ -15,4 +15,4 @@ can swap contact information in the form of name, phone number, and email with a
 contact repository. We hope to save people's time when swapping phone numbers with new people for business or for personal
 reasons. You can use the application is any setting, customized to the need of the business or personal use.
 
-Disclaimer: You can use the provided code for reference purposes. Please do not copy or plagiarize my work. Thanks for your cooperation.
+Disclaimer: You can use the provided code for reference purposes only. Please do not copy or plagiarize the work. Thanks for your cooperation.
