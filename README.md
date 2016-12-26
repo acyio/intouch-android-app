@@ -1,6 +1,6 @@
 inTouch
 ------
-inTouch is an Android Mobile Application written in Java on Android Studio that helps different people stay connected. With a click of a button, the user can swap contact information in the form of name, phone number, and email with another individual by pulling from a contact repository. This will hopefully help users save time when swapping phone numbers with new people. You can use the application in any setting, customized to the need of the business or personal use.
+inTouch is an Android Mobile Application written in Java on Android Studio that helps different people stay connected. With a click of a button, the user can swap contact information in the form of name, phone number, and email with another individual by pulling from a contact repository, which will help users save time when swapping phone numbers with new people. You can use the application in any setting, customized to the need of the business or personal use.
 
 Team Members
 ------
